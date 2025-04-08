@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CBOs e Procedimentos Hospitalares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        h2 {
+            color: #3498db;
+            border-bottom: 1px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .column {
+            flex: 1;
+            min-width: 400px;
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            width: 100%;
+            text-align: left;
+            flex-grow: 1;
+        }
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+        /* Botões DESTAQUE */
+        .btn-consulta-normal {
+            background: #8e44ad;
+        }
+        .btn-consulta-normal:hover {
+            background: #7d3c98;
+        }
+        .btn-consulta-especializado {
+            background: #000000;
+        }
+        .btn-consulta-especializado:hover {
+            background: #333333;
+        }
+        .checkmark {
+            color: #27ae60;
+            margin-left: 10px;
+            display: none;
+            min-width: 20px;
+        }
+        .obs {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-left: 4px solid #ffeeba;
+            margin: 15px 0;
+            font-size: 14px;
+            clear: both;
+        }
+        .obs strong {
+            color: #856404;
+        }
+        .obs ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .obs li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Procedimentos Hospitalares e CBOs</h1>
+
+    <!-- Seção CNES -->
+    <h2>Código CNES</h2>
+    <div class="container">
+        <div class="column">
+            <div class="button-container">
+                <button class="copy-btn" data-code="2432854">Código CNES - 2432854</button>
+                <span class="checkmark">✔</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Procedimentos -->
+    <h2>Procedimentos</h2>
+    <div class="container" id="procedimentos-container">
+        <!-- Coluna 1 -->
+        <div class="column" id="procedimentos-col1">
+            <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
+        </div>
+        
+        <!-- Coluna 2 -->
+        <div class="column" id="procedimentos-col2">
+            <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- CBOs -->
+    <h2>CBOs</h2>
+    <div class="container" id="cbos-container">
+        <!-- Coluna 1 -->
+        <div class="column" id="cbos-col1">
+            <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
+        </div>
+        
+        <!-- Coluna 2 -->
+        <div class="column" id="cbos-col2">
+            <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- Observações -->
+    <div class="obs">
+        <strong>OBSERVAÇÕES:</strong>
+        <ul>
+            <li><strong>Curativo não entra no Relatório.</strong></li>
+            <li><strong>Médica Cardiologista:</strong> Dra. SYLVIA MARIA (ou Dr. Fábio Britto). O 'D' dela é puxado para a esquerda, e o acento til é um traço sobre as vogais.</li>
+            <li><strong>ECG Eletro:</strong> CBO de Cardiologista: 225120.</li>
+            <li><strong>Idades em branco:</strong> Copiar a anterior. Se muitos campos vagos, dividir entre anterior/posterior.</li>
+            <li><strong>Enfermeiro SUP:</strong> Consulta = Procedimento de Médico sem Especialização | Citologia = Procedimento Próprio (QTD).</li>
+            <li><strong>Ocorrência apenas com Nº do Procedimento / CNS / Prontuário:</strong> Não registrar!</li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados dos procedimentos
+            const procedimentos = [
+                { code: '0301100039', text: 'Pressão Arterial - 0301100039', special: false },
+                { code: '0201020041', text: 'Coleta de Sangue - 0201020041 (CBO: 515215)', special: false },
+                { code: '0301100284', text: 'Curativo - 0301100284', special: false },
+                { code: '0401010023', text: 'Curativo - 0401010023', special: false },
+                { code: '0214010015', text: 'Glicose - 0214010015', special: false },
+                { code: '0211020036', text: 'Eletro (ECG) - 0211020036 (CBO: 225120)', special: false },
+                { code: '03010100722', text: 'Consulta Nível Superior Especializado - 03010100722', special: 'btn-consulta-especializado' },
+                { code: '0301010048', text: 'Consulta Nível Superior Sem Especialização - 0301010048', special: 'btn-consulta-normal' },
+                { code: '0205010032', text: 'Eco - 0205010032', special: false },
+                { code: '0301010064', text: 'Consulta Médica Atenção Primária - 0301010064', special: false },
+                { code: '0202030245', text: 'Teste Montox (PPD) - 0202030245', special: false },
+                { code: '0201020033', text: 'Citologia - 0201020033', special: false },
+                { code: '0301100152', text: 'R. Pontos - 0301100152', special: false },
+                { code: '0301100284', text: 'Curativo Simples - 0301100284', special: false },
+                { code: '0301100012', text: 'Adm Medicação - 0301100012', special: false },
+                { code: '0101010010', text: 'Orientação em Grupo - Planejamento Familiar (Enfermeira SUP) - 0101010010', special: false },
+                { code: '0101010028', text: 'Grupo Atividade Educativa - Tabagismo (Assistente Social & Psicóloga) - 0101010028', special: false }
+            ];
+
+            // Dados dos CBOs
+            const cbos = [
+                { code: '322230', text: 'Técnico em Enfermagem - 322230' },
+                { code: '223505', text: 'Enfermeiro SUP - 223505' },
+                { code: '251510', text: 'Psicólogo - 251510' },
+                { code: '225120', text: 'Médico Cardiologista - 225120' },
+                { code: '225250', text: 'Médico Ginecologista - 225250' },
+                { code: '225275', text: 'Médico Otorrinolaringologista - 225275' },
+                { code: '225270', text: 'Médico Ortopedista - 225270' },
+                { code: '223710', text: 'Nutricionista - 223710' },
+                { code: '225115', text: 'Médico Angiologista - 225115' },
+                { code: '225285', text: 'Médico Urologista - 225285' },
+                { code: '225112', text: 'Médico Neurologista - 225112' }
+            ];
+
+            // Função para criar botões
+            function createButton(item, container) {
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'button-container';
+                
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                if (item.special) button.classList.add(item.special);
+                button.setAttribute('data-code', item.code);
+                button.textContent = item.text;
+                
+                const checkmark = document.createElement('span');
+                checkmark.className = 'checkmark';
+                checkmark.textContent = '✔';
+                
+                btnContainer.appendChild(button);
+                btnContainer.appendChild(checkmark);
+                container.appendChild(btnContainer);
+            }
+
+            // Função para distribuir os itens igualmente entre as colunas
+            function distributeItems(items, containerId, col1Id, col2Id) {
+                const container = document.getElementById(containerId);
+                const col1 = document.getElementById(col1Id);
+                const col2 = document.getElementById(col2Id);
+                
+                // Limpar colunas
+                col1.innerHTML = '';
+                col2.innerHTML = '';
+                
+                // Calcular ponto de divisão (metade arredondada para cima)
+                const splitPoint = Math.ceil(items.length / 2);
+                
+                // Criar e distribuir os itens
+                items.forEach((item, index) => {
+                    if (index < splitPoint) {
+                        createButton(item, col1);
+                    } else {
+                        createButton(item, col2);
+                    }
+                });
+            }
+            
+            // Criar e distribuir os itens
+            distributeItems(procedimentos, 'procedimentos-container', 'procedimentos-col1', 'procedimentos-col2');
+            distributeItems(cbos, 'cbos-container', 'cbos-col1', 'cbos-col2');
+            
+            // Configurar os botões de cópia
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('copy-btn')) {
+                    const button = e.target;
+                    const code = button.getAttribute('data-code');
+                    const checkmark = button.parentElement.querySelector('.checkmark');
+                    
+                    navigator.clipboard.writeText(code)
+                        .then(() => {
+                            checkmark.style.display = "inline";
+                            setTimeout(() => {
+                                checkmark.style.display = "none";
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error("Erro ao copiar:", err);
+                            // Fallback para browsers mais antigos
+                            const textarea = document.createElement('textarea');
+                            textarea.value = code;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            
+                            checkmark.style.display = "inline";
+                            setTimeout(() => {
+                                checkmark.style.display = "none";
+                            }, 2000);
+                        });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
