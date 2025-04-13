@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <title>Policlínica JCL - Sistema SUS</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      overflow: hidden; /* Remove barra de rolagem da página principal */
       font-family: Arial, sans-serif;
     }
 
@@ -14,6 +20,11 @@
       display: flex;
       background-color: #e0e0e0;
       border-bottom: 1px solid #ccc;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
 
     .tab {
@@ -33,11 +44,17 @@
     }
 
     .content {
-      padding: 0;
+      position: absolute;
+      top: 42px; /* Altura das abas */
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
 
     .tab-content {
       display: none;
+      width: 100%;
+      height: 100%;
     }
 
     .tab-content.active {
@@ -46,7 +63,7 @@
 
     iframe {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       border: none;
     }
   </style>
