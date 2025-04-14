@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>CBOs e Procedimentos Hospitalares</title>
     <style>
@@ -10,29 +11,35 @@
             margin: 0 auto;
             background-color: #f5f5f5;
         }
+
         h1 {
             color: #2c3e50;
             text-align: center;
         }
+
         h2 {
             color: #3498db;
             border-bottom: 1px solid #3498db;
             padding-bottom: 5px;
         }
+
         .container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
+
         .column {
             flex: 1;
             min-width: 400px;
         }
+
         .button-container {
             display: flex;
             align-items: center;
             margin: 5px 0;
         }
+
         .copy-btn {
             background: #3498db;
             color: white;
@@ -46,28 +53,35 @@
             text-align: left;
             flex-grow: 1;
         }
+
         .copy-btn:hover {
             background: #2980b9;
         }
+
         /* Botões DESTAQUE */
         .btn-consulta-normal {
             background: #8e44ad;
         }
+
         .btn-consulta-normal:hover {
             background: #7d3c98;
         }
+
         .btn-consulta-especializado {
             background: #000000;
         }
+
         .btn-consulta-especializado:hover {
             background: #333333;
         }
+
         .checkmark {
             color: #27ae60;
             margin-left: 10px;
             display: none;
             min-width: 20px;
         }
+
         .obs {
             background-color: #fff3cd;
             padding: 10px;
@@ -76,18 +90,30 @@
             font-size: 14px;
             clear: both;
         }
+
         .obs strong {
             color: #856404;
         }
+
         .obs ul {
             margin: 10px 0;
             padding-left: 20px;
         }
+
         .obs li {
             margin-bottom: 8px;
         }
+
+        footer {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
     <h1>Procedimentos Hospitalares e CBOs</h1>
 
@@ -109,7 +135,7 @@
         <div class="column" id="procedimentos-col1">
             <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
         </div>
-        
+
         <!-- Coluna 2 -->
         <div class="column" id="procedimentos-col2">
             <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
@@ -123,7 +149,7 @@
         <div class="column" id="cbos-col1">
             <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
         </div>
-        
+
         <!-- Coluna 2 -->
         <div class="column" id="cbos-col2">
             <!-- Itens serão distribuídos automaticamente pelo JavaScript -->
@@ -135,16 +161,19 @@
         <strong>OBSERVAÇÕES:</strong>
         <ul>
             <li><strong>Curativo não entra no Relatório.</strong></li>
-            <li><strong>Médica Cardiologista:</strong> Dra. SYLVIA MARIA (ou Dr. Fábio Britto). O 'D' dela é puxado para a esquerda, e o acento til é um traço sobre as vogais.</li>
+            <li><strong>Médica Cardiologista:</strong> Dra. SYLVIA MARIA (ou Dr. Fábio Britto). O 'D' dela é puxado para
+                a esquerda, e o acento til é um traço sobre as vogais.</li>
             <li><strong>ECG Eletro:</strong> CBO de Cardiologista: 225120.</li>
-            <li><strong>Idades em branco:</strong> Copiar a anterior. Se muitos campos vagos, dividir entre anterior/posterior.</li>
-            <li><strong>Enfermeiro SUP:</strong> Consulta = Procedimento de Médico sem Especialização | Citologia = Procedimento Próprio (QTD).</li>
+            <li><strong>Idades em branco:</strong> Copiar a anterior. Se muitos campos vagos, dividir entre
+                anterior/posterior.</li>
+            <li><strong>Enfermeiro SUP:</strong> Consulta = Procedimento de Médico sem Especialização | Citologia =
+                Procedimento Próprio (QTD).</li>
             <li><strong>Ocorrência apenas com Nº do Procedimento / CNS / Prontuário:</strong> Não registrar!</li>
         </ul>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Dados dos procedimentos
             const procedimentos = [
                 { code: '0301100039', text: 'Pressão Arterial - 0301100039', special: false },
@@ -157,7 +186,7 @@
                 { code: '0301010048', text: 'Consulta Nível Superior Sem Especialização - 0301010048', special: 'btn-consulta-normal' },
                 { code: '0205010032', text: 'Eco - 0205010032', special: false },
                 { code: '0301010064', text: 'Consulta Médica Atenção Primária - 0301010064', special: false },
-                { code: '0202030245', text: 'Teste Montox (PPD) - 0202030245', special: false },
+                { code: '0202030245', text: 'Teste Mantoux (PPD) - 0202030245', special: false },
                 { code: '0201020033', text: 'Citologia - 0201020033', special: false },
                 { code: '0301100152', text: 'R. Pontos - 0301100152', special: false },
                 { code: '0301100012', text: 'Adm Medicação - 0301100012', special: false },
@@ -188,17 +217,17 @@
             function createButton(item, container) {
                 const btnContainer = document.createElement('div');
                 btnContainer.className = 'button-container';
-                
+
                 const button = document.createElement('button');
                 button.className = 'copy-btn';
                 if (item.special) button.classList.add(item.special);
                 button.setAttribute('data-code', item.code);
                 button.textContent = item.text;
-                
+
                 const checkmark = document.createElement('span');
                 checkmark.className = 'checkmark';
                 checkmark.textContent = '✔';
-                
+
                 btnContainer.appendChild(button);
                 btnContainer.appendChild(checkmark);
                 container.appendChild(btnContainer);
@@ -209,14 +238,14 @@
                 const container = document.getElementById(containerId);
                 const col1 = document.getElementById(col1Id);
                 const col2 = document.getElementById(col2Id);
-                
+
                 // Limpar colunas
                 col1.innerHTML = '';
                 col2.innerHTML = '';
-                
+
                 // Calcular ponto de divisão (metade arredondada para cima)
                 const splitPoint = Math.ceil(items.length / 2);
-                
+
                 // Criar e distribuir os itens
                 items.forEach((item, index) => {
                     if (index < splitPoint) {
@@ -226,18 +255,18 @@
                     }
                 });
             }
-            
+
             // Criar e distribuir os itens
             distributeItems(procedimentos, 'procedimentos-container', 'procedimentos-col1', 'procedimentos-col2');
             distributeItems(cbos, 'cbos-container', 'cbos-col1', 'cbos-col2');
-            
+
             // Configurar os botões de cópia
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target.classList.contains('copy-btn')) {
                     const button = e.target;
                     const code = button.getAttribute('data-code');
                     const checkmark = button.parentElement.querySelector('.checkmark');
-                    
+
                     navigator.clipboard.writeText(code)
                         .then(() => {
                             checkmark.style.display = "inline";
@@ -254,7 +283,7 @@
                             textarea.select();
                             document.execCommand('copy');
                             document.body.removeChild(textarea);
-                            
+
                             checkmark.style.display = "inline";
                             setTimeout(() => {
                                 checkmark.style.display = "none";
@@ -265,4 +294,7 @@
         });
     </script>
 </body>
+<footer>
+    <span>Copyright © 2025 Alexsandro Vicente. Todos os Direitos Reservados.</span>
+</footer>
 </html>
